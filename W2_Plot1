@@ -1,0 +1,13 @@
+NEI <- readRDS("summarySCC_PM25.rds")
+SCC <- readRDS("Source_Classification_Code.rds")
+
+##Creating png
+png(filename = "plot1.png")
+
+##Plotting
+with(NEI, plot(year, Emissions, main = "Emission tendency from PM2.5 across the years in the U.S.", pch = 20,
+xlab = "Years", ylab = "PM 2.5 Emissions"))
+   model <- lm(year~Emissions, NEI)
+   abline(model, lwd = 2, col = "red")
+
+dev.off()
