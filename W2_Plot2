@@ -1,0 +1,17 @@
+NEI <- readRDS("summarySCC_PM25.rds")
+
+##Subset the Baltimore data
+data <- NEI[NEI$fips == "24510",]
+
+##Also possible: data <- NEI[NEI$fips %in% c("24510"),]
+
+##Creating png
+png(filename = "plot1.png")
+
+##Plotting
+with(data, plot(year, Emissions, main = "Emission tendency from PM2.5 across the years in Baltimore", pch = 20,
+xlab = "Years", ylab = "PM 2.5 Emissions"))
+   model <- lm(year~Emissions, NEI)
+   abline(model, lwd = 2, col = "red")
+
+dev.off()
